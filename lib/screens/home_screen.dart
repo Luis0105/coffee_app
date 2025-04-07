@@ -1,4 +1,5 @@
 import 'package:coffee_app/res/resorces_list.dart';
+import 'package:coffee_app/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -142,7 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ProductScreen(index),
+                                    builder: (context) => ProductScreen(
+                                      index: index,
+                                    ),
                                   ));
                             },
                             child: Card(
@@ -270,6 +273,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
+                    customCard(images[5]),
+                    SizedBox(height: 20),
+                    customCard(images[6]),
+                    SizedBox(height: 20),
+                    customCard(images[7]),
+                    SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -319,6 +328,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   image: DecorationImage(image: asset, fit: BoxFit.cover),
                 ),
               ),
+            ),
+            SizedBox(width: 20),
+            Column(
+              children: [
+                Text(
+                  "5 Coffee beans You\nMust Try!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             )
           ],
         ),
