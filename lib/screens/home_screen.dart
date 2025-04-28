@@ -2,6 +2,7 @@ import 'package:coffee_app/res/resorces_list.dart';
 import 'package:coffee_app/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
+// Pantalla principal que muestra la búsqueda y listado de productos
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -13,43 +14,46 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1d2630),
+      // Scaffold: estructura principal de la pantalla
+      backgroundColor: Color(0xFF1d2630), // Fondo de color oscuro
       body: Padding(
-        padding: EdgeInsets.only(left: 30, right: 30, top: 40),
+        padding:
+            EdgeInsets.only(left: 30, right: 30, top: 40), // Espaciado interno
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Fila del ícono de menú y foto de perfil
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Menú (íconos circulares)
                 Card(
+                  // Card: contenedor con sombra
                   elevation: 20,
                   color: Colors.white.withOpacity(0.1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Container(
+                    // Container: diseño del área del menú
                     height: 40,
                     width: 40,
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       children: [
-                        circleRow(),
+                        circleRow(), // Fila de 2 pequeños círculos (íconos)
                         circleRow(),
                       ],
                     ),
                   ),
                 ),
+                // Imagen de perfil
                 ClipRRect(
+                  // ClipRRect: recorta las esquinas redondeadas
                   borderRadius: BorderRadius.circular(100),
                   child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     child: Image.asset(
+                      // Imagen circular del usuario
                       "assets/images/profile.jpg",
                       height: 40,
                       width: 40,
@@ -59,24 +63,26 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(height: 20),
+
+            // Texto de bienvenida
             Text(
               "Find the best",
               style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-              ),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30),
             ),
             Text(
               "Coffee for you",
               style: TextStyle(
-                letterSpacing: 2,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-              ),
+                  letterSpacing: 2,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30),
             ),
             SizedBox(height: 25),
+
+            // Barra de búsqueda
             Container(
               height: 45,
               width: double.infinity,
@@ -85,29 +91,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white.withOpacity(0.1),
               ),
               child: TextFormField(
+                // TextFormField: campo de entrada de texto editable
                 decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.coffee,
-                    color: Colors.white.withOpacity(0.3),
-                  ),
+                  prefixIcon:
+                      Icon(Icons.coffee, color: Colors.white.withOpacity(0.3)),
                   border: InputBorder.none,
-                  hintText: "Find Your Coffee...",
+                  hintText: "Find Your Coffee...", // Texto sugerido
                   hintStyle: TextStyle(
-                    color: Colors.white.withOpacity(0.3),
-                    fontSize: 12,
-                  ),
+                      color: Colors.white.withOpacity(0.3), fontSize: 12),
                 ),
               ),
             ),
             SizedBox(height: 25),
-            // This is only static not dynamic. Just for UI
+
+            // Categorías (estático para UI)
             SizedBox(
               height: 30,
               child: ListView.builder(
+                // ListView.builder: lista horizontal dinámica
                 itemCount: 5,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return GestureDetector(
+                    // GestureDetector: detecta toques sin efecto visual
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
@@ -126,11 +132,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(height: 20),
+
+            // Productos principales
             Expanded(
               child: SingleChildScrollView(
+                // SingleChildScrollView: permite hacer scroll
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Lista horizontal de productos
                     SizedBox(
                       height: 270,
                       width: double.infinity,
@@ -139,21 +149,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return InkWell(
+                            // InkWell: detecta toques con animación de "ripple"
                             onTap: () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ProductScreen(
-                                      index: index,
-                                    ),
-                                  ));
+                                // Al tocar, navega a ProductScreen
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProductScreen(index: index),
+                                ),
+                              );
                             },
                             child: Card(
+                              // Card: tarjeta del producto
                               elevation: 20,
                               color: Colors.white.withOpacity(0.1),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
+                                  borderRadius: BorderRadius.circular(20)),
                               margin: EdgeInsets.only(right: 20),
                               child: Container(
                                 padding: EdgeInsets.all(15),
@@ -161,6 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    // Imagen del producto
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
                                       child: SizedBox(
@@ -170,10 +183,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           children: [
                                             Positioned.fill(
                                               child: Image(
-                                                image: images[index],
-                                                fit: BoxFit.cover,
-                                              ),
+                                                  image: images[index],
+                                                  fit: BoxFit.cover),
                                             ),
+                                            // Rating encima de la imagen
                                             Align(
                                               alignment: Alignment.topRight,
                                               child: Container(
@@ -184,32 +197,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .withOpacity(0.7),
                                                   borderRadius:
                                                       BorderRadius.only(
-                                                    bottomLeft:
-                                                        Radius.circular(10),
-                                                  ),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  10)),
                                                 ),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: [
-                                                    Icon(
-                                                      Icons.start,
-                                                      color: Colors.orange,
-                                                      size: 14,
-                                                    ),
+                                                    Icon(Icons.star,
+                                                        color: Colors.orange,
+                                                        size: 14),
                                                     Text(
-                                                      ratting[index].toString(),
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
+                                                        ratting[index]
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
                                                   ],
                                                 ),
                                               ),
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -218,43 +229,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text(
                                       names[index],
                                       style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(height: 5),
                                     Text(
                                       with_[index],
                                       style: TextStyle(
-                                        color: Colors.white.withOpacity(0.5),
-                                        fontSize: 15,
-                                      ),
+                                          color: Colors.white.withOpacity(0.5),
+                                          fontSize: 15),
                                     ),
                                     SizedBox(height: 10),
                                     Row(
                                       children: [
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                            "\$ ",
+                                        Text("\$",
                                             style: TextStyle(
-                                              color: Colors.orange,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          prices[index],
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                                color: Colors.orange,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold)),
+                                        Text(prices[index],
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold)),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -264,15 +264,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
+
+                    // Texto "Special for you"
                     Text(
                       "Special for you",
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
                     ),
                     SizedBox(height: 20),
+
+                    // Tarjetas especiales (CustomCard)
                     customCard(images[5]),
                     SizedBox(height: 20),
                     customCard(images[6]),
@@ -289,6 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // Widget para construir los íconos circulares del menú
   Widget circleRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -299,6 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // Pequeño ícono circular
   Widget circleIcon() {
     return Icon(
       Icons.circle,
@@ -307,6 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // Tarjeta personalizada especial (customCard)
   Widget customCard(AssetImage asset) {
     return Card(
       color: Colors.white.withOpacity(0.1),
@@ -331,6 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(width: 20),
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   "5 Coffee beans You\nMust Try!",
@@ -340,7 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
