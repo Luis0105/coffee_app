@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 30,
               child: ListView.builder(
                 // ListView.builder: lista horizontal dinámica
-                itemCount: 5,
+                itemCount: names.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return GestureDetector(
@@ -119,7 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         names[index],
                         style: TextStyle(
-                          color: category[index]
+                          // Si la lista category tiene un valor en esta posición y es true, se usa el color naranja (seleccionado),
+                          // de lo contrario, se usa un color blanco con opacidad (no seleccionado)
+                          color: category.length > index && category[index]
                               ? Colors.orange
                               : Colors.white.withOpacity(0.4),
                           fontWeight: FontWeight.bold,
@@ -276,11 +278,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: 20),
 
                     // Tarjetas especiales (CustomCard)
+
                     customCard(images[5]),
                     SizedBox(height: 20),
                     customCard(images[6]),
                     SizedBox(height: 20),
                     customCard(images[7]),
+                    SizedBox(height: 20),
+                    customCard(images[5]),
                     SizedBox(height: 20),
                   ],
                 ),

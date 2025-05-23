@@ -15,6 +15,7 @@ class _ProductScreenState extends State<ProductScreen> {
   var s = true; // Controla si el tamaño Small está seleccionado
   var m = false; // Controla si Medium está seleccionado
   var l = false; // Controla si Large está seleccionado
+  var xl = false;
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +181,9 @@ class _ProductScreenState extends State<ProductScreen> {
       children: [
         Row(
           children: [
+            // Iconos que estan dentro de la app
+            _iconContainer(Icons.coffee, "Prueba"),
+            SizedBox(width: 15),
             _iconContainer(Icons.coffee, "Coffee"),
             SizedBox(width: 15),
             _iconContainer(Icons.water_drop_rounded, "Milk"),
@@ -259,6 +263,13 @@ class _ProductScreenState extends State<ProductScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Botones para elegir el tamaño
+              _sizeButton("XL", () {
+                s = true;
+                m = false;
+                l = false;
+                setState(() {});
+              }, xl),
               _sizeButton("S", () {
                 s = true;
                 m = false;
@@ -290,7 +301,7 @@ class _ProductScreenState extends State<ProductScreen> {
       onTap: onTap,
       child: Container(
         height: 40,
-        width: 110,
+        width: 70,
         decoration: BoxDecoration(
           color: selected ? Color(0xFF1d2630) : Colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(10),

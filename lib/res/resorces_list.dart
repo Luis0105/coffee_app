@@ -34,6 +34,7 @@ var names = [
   "Machination",
   "Macchiato",
   "Double",
+  "Frappe",
 ];
 
 // Tipos de leche o acompañamiento
